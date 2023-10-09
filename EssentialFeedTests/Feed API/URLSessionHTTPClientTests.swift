@@ -58,9 +58,8 @@ final class URLSessionHTTPClientTests: XCTestCase {
         let requestError = NSError(domain: "any error", code: 1)
         let receivedError = resultErrorFor(data: nil, response: nil, error: requestError)
 
-        guard let nsReceivedError = receivedError as? NSError else { return}
-        XCTAssertEqual(nsReceivedError.domain, requestError.domain)
-        XCTAssertEqual(nsReceivedError.code, requestError.code)
+        XCTAssertEqual(receivedError?.domain, requestError.domain)
+        XCTAssertEqual(receivedError?.code, requestError.code)
     }
     
     func test_getFromURL_failsOnAllNilValues() {
@@ -75,16 +74,16 @@ final class URLSessionHTTPClientTests: XCTestCase {
         return sut
     }
     
-    private func resultErrorFor(data: Data?, response: URLResponse?, error: Error?, file: StaticString = #file, line: UInt = #line) -> Error? {
+    private func resultErrorFor(data: Data?, response: URLResponse?, error: Error?, file: StaticString = #file, line: UInt = #line) -> NSError? {
         URLProtocolStub.stub(data: data, response: response, error: error)
         
         let sut = makeSUT(file: file, line: line)
         let exp = expectation(description: "Wait for completion")
         
-        var receivedError: Error?
+        var receivedError: NSError?
         sut.get(from: anyURL()) { result in
             switch result {
-            case let .failure(error):
+            case let .failure(error as NSError):
                 receivedError = error
                break
             default:
