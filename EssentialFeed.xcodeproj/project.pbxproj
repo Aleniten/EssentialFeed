@@ -42,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		280BB7D02AD078100025B0DC /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
+		2823720D2AD4C19000CB9C9C /* CI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CI.xctestplan; sourceTree = "<group>"; };
 		282CE63D2AD463FE007CE17B /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		282CE6402AD47A57007CE17B /* EssentialFeed.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = EssentialFeed.xctestplan; sourceTree = "<group>"; };
 		282CE6452AD47B88007CE17B /* EssentialFeedAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,7 +57,6 @@
 		287C3C812AD4416B0094AC2F /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		28D3BD2C2AD032A200A32D8F /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		28D3BD2E2AD032D500A32D8F /* FeedItemsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsMapper.swift; sourceTree = "<group>"; };
-		28DA36ED2AD4855200535855 /* CI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CI.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +106,7 @@
 		286535DA2ACDDB8F00572831 = {
 			isa = PBXGroup;
 			children = (
-				28DA36ED2AD4855200535855 /* CI.xctestplan */,
+				2823720D2AD4C19000CB9C9C /* CI.xctestplan */,
 				282CE6402AD47A57007CE17B /* EssentialFeed.xctestplan */,
 				286535E62ACDDB8F00572831 /* EssentialFeed */,
 				286535F02ACDDB8F00572831 /* EssentialFeedTests */,
