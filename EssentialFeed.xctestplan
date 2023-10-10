@@ -1,20 +1,18 @@
 {
   "configurations" : [
     {
-      "id" : "D8CC37D4-81B9-449E-A05C-24B93E57EBA0",
-      "name" : "Test Scheme Action",
+      "id" : "9C7E6803-BD34-4516-8F7B-718A3D0AB6C4",
+      "name" : "Configuration 1",
       "options" : {
 
       }
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : false,
-    "testExecutionOrdering" : "random"
+
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:EssentialFeed.xcodeproj",
         "identifier" : "286535EB2ACDDB8F00572831",
