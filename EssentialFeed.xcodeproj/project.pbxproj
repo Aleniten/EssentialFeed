@@ -19,6 +19,8 @@
 		286536022ACDFC3500572831 /* LoadFeedFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286536012ACDFC3500572831 /* LoadFeedFromRemoteUseCaseTests.swift */; };
 		286536052ACEDE3100572831 /* RemoteFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286536042ACEDE3100572831 /* RemoteFeedLoader.swift */; };
 		286A0EF92AD82F350027CD03 /* CacheFeedUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286A0EF82AD82F350027CD03 /* CacheFeedUseCaseTests.swift */; };
+		286A0EFC2AD891720027CD03 /* LocalFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286A0EFB2AD891720027CD03 /* LocalFeedLoader.swift */; };
+		286A0EFE2AD891C80027CD03 /* FeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286A0EFD2AD891C80027CD03 /* FeedStore.swift */; };
 		287C3C822AD4416B0094AC2F /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287C3C812AD4416B0094AC2F /* XCTestCase+MemoryLeakTracking.swift */; };
 		28D3BD2D2AD032A200A32D8F /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D3BD2C2AD032A200A32D8F /* HTTPClient.swift */; };
 		28D3BD2F2AD032D500A32D8F /* FeedItemsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D3BD2E2AD032D500A32D8F /* FeedItemsMapper.swift */; };
@@ -56,6 +58,8 @@
 		286536012ACDFC3500572831 /* LoadFeedFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFeedFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
 		286536042ACEDE3100572831 /* RemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoader.swift; sourceTree = "<group>"; };
 		286A0EF82AD82F350027CD03 /* CacheFeedUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheFeedUseCaseTests.swift; sourceTree = "<group>"; };
+		286A0EFB2AD891720027CD03 /* LocalFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFeedLoader.swift; sourceTree = "<group>"; };
+		286A0EFD2AD891C80027CD03 /* FeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStore.swift; sourceTree = "<group>"; };
 		287C3C812AD4416B0094AC2F /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		28D3BD2C2AD032A200A32D8F /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		28D3BD2E2AD032D500A32D8F /* FeedItemsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsMapper.swift; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 		286535E62ACDDB8F00572831 /* EssentialFeed */ = {
 			isa = PBXGroup;
 			children = (
+				286A0EFA2AD8915C0027CD03 /* Feed Cache */,
 				286536032ACEDE1C00572831 /* Feed API */,
 				286535E72ACDDB8F00572831 /* EssentialFeed.h */,
 				286536002ACDDEFF00572831 /* Feed Feature */,
@@ -171,6 +176,15 @@
 			isa = PBXGroup;
 			children = (
 				286A0EF82AD82F350027CD03 /* CacheFeedUseCaseTests.swift */,
+			);
+			path = "Feed Cache";
+			sourceTree = "<group>";
+		};
+		286A0EFA2AD8915C0027CD03 /* Feed Cache */ = {
+			isa = PBXGroup;
+			children = (
+				286A0EFB2AD891720027CD03 /* LocalFeedLoader.swift */,
+				286A0EFD2AD891C80027CD03 /* FeedStore.swift */,
 			);
 			path = "Feed Cache";
 			sourceTree = "<group>";
@@ -334,6 +348,8 @@
 				28D3BD2F2AD032D500A32D8F /* FeedItemsMapper.swift in Sources */,
 				286535FF2ACDDE2E00572831 /* FeedLoader.swift in Sources */,
 				286536052ACEDE3100572831 /* RemoteFeedLoader.swift in Sources */,
+				286A0EFE2AD891C80027CD03 /* FeedStore.swift in Sources */,
+				286A0EFC2AD891720027CD03 /* LocalFeedLoader.swift in Sources */,
 				28D3BD2D2AD032A200A32D8F /* HTTPClient.swift in Sources */,
 				286535FD2ACDDBDE00572831 /* FeedItem.swift in Sources */,
 				282CE63E2AD463FE007CE17B /* URLSessionHTTPClient.swift in Sources */,
