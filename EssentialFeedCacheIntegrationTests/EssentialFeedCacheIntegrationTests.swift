@@ -45,7 +45,6 @@ final class EssentialFeedCacheIntegrationTests: XCTestCase {
         let latestFeed = uniqueImageFeed().models
         
         save(firstFeed, with: sutToPerformFirstSave)
-        
         save(latestFeed, with: sutToPerformLastSave)
         
         expect(sutToPerformLoad, toLoad: latestFeed)
@@ -57,6 +56,8 @@ final class EssentialFeedCacheIntegrationTests: XCTestCase {
         let storeBundle = Bundle(for: CoreDataFeedStore.self)
         let storeURL = testSpecificStoreURL()
         let store = try! CoreDataFeedStore(storeURL: storeURL, bundle: storeBundle)
+        /// Let this to remind that framework is  decuople from bussiness logic.
+//        let store = CodableFeedStore(storeURL: storeURL)
         let sut = LocalFeedLoader(store: store, currentDate: Date.init)
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
