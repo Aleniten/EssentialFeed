@@ -28,11 +28,11 @@ import EssentialFeed
     }
     
     func completeDeletion(with error: Error, at index: Int = 0) {
-        deletionCompletions[index](error)
+        deletionCompletions[index](.failure(error))
     }
     
     func completeDeletionSuccesfully(at index: Int = 0) {
-       deletionCompletions[index](nil)
+       deletionCompletions[index](.success(()))
     }
     
     func insert(_ feed: [LocalFeedImage], timeStamp: Date, completion: @escaping InsertionCompletion) {
@@ -41,11 +41,11 @@ import EssentialFeed
     }
     
     func completeInsertion(with error: Error, at index: Int = 0) {
-        insertionCompletions[index](error)
+        insertionCompletions[index](.failure(error))
     }
     
     func completeInsertionSuccesfully(at index: Int = 0) {
-        insertionCompletions[index](nil)
+        insertionCompletions[index](.success(()))
     }
      
      func retrieve(completion: @escaping RetrievalCompletion) {
@@ -58,10 +58,10 @@ import EssentialFeed
      }
      
      func completeRetrievalWithEmptyCache(at index: Int = 0) {
-         retrievalCompletions[index](.empty)
+         retrievalCompletions[index](.success(.none))
      }
      
      func completeRetrieval(with feed: [LocalFeedImage], timestamp: Date, at index: Int = 0) {
-         retrievalCompletions[index](.found(feed, timestamp))
+         retrievalCompletions[index](.success(CachedFeed(feed: feed, timestamp: timestamp)))
      }
 }
