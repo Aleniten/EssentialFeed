@@ -22,9 +22,18 @@ final class FeedViewController: UITableViewController {
         
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
-        refreshControl?.beginRefreshing()
         load()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        refreshControl?.beginRefreshing()
+        
+    }
+//    override func viewIsAppearing(_ animated: Bool) {
+//        super.viewIsAppearing(animated)
+//        refreshControl?.beginRefreshing()
+//    }
     
     @objc func load() {
         loader?.load { _ in}
@@ -40,14 +49,14 @@ final class FeedViewControllerTests: XCTestCase {
     
     func test_viewDidLoad_loadsFeed() {
         let (sut , loader) = makeSUT()
-        sut.loadViewIfNeeded()
+        sut.simulateAppearance()
         
         XCTAssertEqual(loader.loadCallCount, 1)
     }
     
     func test_pullToRefresh_loadsFeed() {
         let (sut , loader) = makeSUT()
-        sut.loadViewIfNeeded()
+        sut.simulateAppearance()
         
         sut.refreshControl?.simulatePullToRefresh()
         
@@ -60,9 +69,9 @@ final class FeedViewControllerTests: XCTestCase {
     
     func test_viewDidLoad_showLoadingIndicator() {
         let (sut , _) = makeSUT()
-        sut.loadViewIfNeeded()
+        sut.simulateAppearance()
         
-        XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
+        XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
     }
 
     // MARK: Helpers
@@ -93,4 +102,54 @@ private extension UIRefreshControl {
             }
         }
     }
+}
+
+extension FeedViewController {
+    func simulateAppearance() {
+            if !isViewLoaded {
+                loadViewIfNeeded()
+                prepareForFirstAppearance()
+            }
+            beginAppearanceTransition(true, animated: false)
+            endAppearanceTransition()
+            }
+
+            private func prepareForFirstAppearance() {
+                setSmallFrameToPreventRenderingCells()
+                replaceRefreshControlWithSpyForiOS17Support()
+            }
+
+            private func setSmallFrameToPreventRenderingCells() {
+                tableView.frame = CGRect(x: 0, y: 0, width: 390, height: 1)
+            }
+
+            private func replaceRefreshControlWithSpyForiOS17Support() {
+                let spyRefreshControl = UIRefreshControlSpy()
+
+                refreshControl?.allTargets.forEach { target in
+                    refreshControl?.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach { action in
+                        spyRefreshControl.addTarget(target, action: Selector(action), for: .valueChanged)
+                    }
+                }
+
+                refreshControl = spyRefreshControl
+            }
+
+    private class UIRefreshControlSpy: UIRefreshControl {
+        private var _isRefreshing = false
+        
+        override var isRefreshing: Bool { _isRefreshing }
+        
+        override func beginRefreshing() {
+            _isRefreshing = true
+        }
+        
+        override func endRefreshing() {
+            _isRefreshing = false
+        }
+    }
+    
+    func simulateUserInitiatedReload() {
+            refreshControl?.simulatePullToRefresh()
+        }
 }
