@@ -1,24 +1,15 @@
 {
   "configurations" : [
     {
-      "id" : "4B5F40B6-B13F-48AB-B36C-8F1181642430",
-      "name" : "Configuration 1",
+      "id" : "2A6E2A22-2CDE-4DB2-87DE-CA0F950056CE",
+      "name" : "Test Scheme Action",
       "options" : {
 
       }
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : {
-      "targets" : [
-        {
-          "containerPath" : "container:EssentialFeed.xcodeproj",
-          "identifier" : "286535E32ACDDB8F00572831",
-          "name" : "EssentialFeed"
-        }
-      ]
-    },
-    "testExecutionOrdering" : "random"
+    "codeCoverage" : false
   },
   "testTargets" : [
     {
