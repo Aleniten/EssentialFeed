@@ -30,7 +30,7 @@ final class FeedRefreshViewController: NSObject {
             if let feed = try? result.get() {
                 self.onRefresh?(feed)
             }
-            self.view.endRefreshing()
         }
+        view.endRefreshing()
     }
 }
