@@ -247,7 +247,7 @@ final class FeedViewControllerTests: XCTestCase {
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: FeedViewController, loader: LoaderSpy) {
         let loader = LoaderSpy()
-        let sut = FeedViewController(feedLoader: loader, imageLoader: loader)
+        let sut = FeedUIComposer.feedComposedWith(feedLoader: loader, imageLoader: loader)
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
@@ -256,36 +256,36 @@ final class FeedViewControllerTests: XCTestCase {
 
 extension FeedViewController {
     func simulateAppearance() {
-            if !isViewLoaded {
-                loadViewIfNeeded()
-                prepareForFirstAppearance()
-            }
-            beginAppearanceTransition(true, animated: false)
-            endAppearanceTransition()
+        if !isViewLoaded {
+            loadViewIfNeeded()
+            prepareForFirstAppearance()
         }
+        beginAppearanceTransition(true, animated: false)
+        endAppearanceTransition()
+    }
     
     private func prepareForFirstAppearance() {
-            setSmallFrameToPreventRenderingCells()
-            replaceRefreshControlWithSpyForiOS17Support()
-        }
+        setSmallFrameToPreventRenderingCells()
+        replaceRefreshControlWithSpyForiOS17Support()
+    }
 
-        private func setSmallFrameToPreventRenderingCells() {
-            tableView.frame = CGRect(x: 0, y: 0, width: 390, height: 1)
-        }
+    private func setSmallFrameToPreventRenderingCells() {
+        tableView.frame = CGRect(x: 0, y: 0, width: 390, height: 1)
+    }
 
     private class UIRefreshControlSpy: UIRefreshControl {
-            private var _isRefreshing = false
+        private var _isRefreshing = false
 
-            override var isRefreshing: Bool { _isRefreshing }
+        override var isRefreshing: Bool { _isRefreshing }
 
-            override func beginRefreshing() {
-                _isRefreshing = true
-            }
-
-            override func endRefreshing() {
-                _isRefreshing = false
-            }
+        override func beginRefreshing() {
+            _isRefreshing = true
         }
+
+        override func endRefreshing() {
+            _isRefreshing = false
+        }
+    }
     
     private func replaceRefreshControlWithSpyForiOS17Support() {
             let spyRefreshControl = UIRefreshControlSpy()

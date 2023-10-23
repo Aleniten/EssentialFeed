@@ -26,10 +26,11 @@ final class FeedRefreshViewController: NSObject {
     @objc func refresh() {
         view.beginRefreshing()
         feedLoader.load { [weak self] result in
+            guard let self = self else { return }
             if let feed = try? result.get() {
-                self?.onRefresh?(feed)
+                self.onRefresh?(feed)
             }
-            self?.view.endRefreshing()
+            self.view.endRefreshing()
         }
     }
 }
