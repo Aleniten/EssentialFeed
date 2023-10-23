@@ -339,6 +339,7 @@ private extension UIRefreshControl {
 }
 
 extension FeedViewController {
+    
     private class UIRefreshControlSpy: UIRefreshControl {
         private var _isRefreshing = false
         
