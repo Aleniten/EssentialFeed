@@ -4,7 +4,7 @@
 //
 //  Created by Jose Herrero on 2023-10-24.
 //
-
+import Foundation
 import EssentialFeed
 
 protocol FeedLoadingView {
@@ -21,7 +21,7 @@ final class FeedPresenter {
     private let loadingView: FeedLoadingView
     
     static var title: String {
-        return "My Feed"
+        return String(localized: "FEED_VIEW_TITLE", defaultValue: "My Feed")
     }
     
     init(feedView: FeedView, loadingView: FeedLoadingView) {
