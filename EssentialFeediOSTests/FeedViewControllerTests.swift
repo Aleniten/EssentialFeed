@@ -259,7 +259,20 @@ final class FeedViewControllerTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
         
     }
-    
+    func test_loadImageDataCompletion_dispatchesFromBackgroundToMainThread() {
+            let (sut, loader) = makeSUT()
+
+            sut.loadViewIfNeeded()
+            loader.completeFeedLoading(with: [makeImage()])
+            _ = sut.simulateFeedImageViewVisible(at: 0)
+
+            let exp = expectation(description: "Wait for background queue")
+            DispatchQueue.global().async {
+                loader.completeImageLoading(with: self.anyImageData(), at: 0)
+                exp.fulfill()
+            }
+            wait(for: [exp], timeout: 1.0)
+        }
 //    func test_feedImageView_doesNotRenderLoadedImageWhenNotVisibleAnymore() {
 //          let (sut, loader) = makeSUT()
 //          sut.simulateAppearance()
@@ -291,6 +304,10 @@ final class FeedViewControllerTests: XCTestCase {
             XCTFail("Missing Localized String for key: \(key) in table: \(table)", file: file, line: line)
         }
         return value
+    }
+    
+    private func anyImageData() -> Data {
+        return UIImage.make(withColor: .red).pngData()!
     }
 }
 
