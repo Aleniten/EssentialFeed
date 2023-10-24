@@ -239,9 +239,15 @@ final class FeedViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.cancelledImageURLs, [image0.url, image1.url], "Expected second cancelled image URL request once second image is not near visible anymore")
     }
     
-    private func makeImage(description: String? = nil, location: String? = nil, url: URL = URL(string: "http://any-url.com")!) -> FeedImage {
-        return FeedImage(id: UUID(), description: description, location: location, url: url)
-    }
+//    func test_feedImageView_doesNotRenderLoadedImageWhenNotVisibleAnymore() {
+//        let (sut, loader) = makeSUT()
+//        sut.simulateAppearance()
+//        
+//        let view = sut.simulateFeedImageViewNotVisible(at: 0)
+//        loader.completeImageLoading(with: UIImage.make(withColor: .red).pngData()!)
+//        
+//        XCTAssertNil(view?.renderedImage)
+//    }
     
     // MARK: - Helpers
     
@@ -251,6 +257,10 @@ final class FeedViewControllerTests: XCTestCase {
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
+    }
+    
+    private func makeImage(description: String? = nil, location: String? = nil, url: URL = URL(string: "http://any-url.com")!) -> FeedImage {
+        return FeedImage(id: UUID(), description: description, location: location, url: url)
     }
 }
 
