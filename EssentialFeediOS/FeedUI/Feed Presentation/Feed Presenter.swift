@@ -16,8 +16,6 @@ protocol FeedView {
 
 
 final class FeedPresenter {
-    typealias Observer<T> = (T) -> Void
-    
     private let feedLoader: FeedLoader
 
     init(feedLoader: FeedLoader) {
