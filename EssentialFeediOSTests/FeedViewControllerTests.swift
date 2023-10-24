@@ -247,16 +247,28 @@ final class FeedViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.cancelledImageURLs, [image0.url, image1.url], "Expected second cancelled image URL request once second image is not near visible anymore")
     }
     
-//    func test_feedImageView_doesNotRenderLoadedImageWhenNotVisibleAnymore() {
-//        let (sut, loader) = makeSUT()
-//        sut.simulateAppearance()
-//        
-//        let view = sut.simulateFeedImageViewNotVisible(at: 0)
-//        loader.completeImageLoading(with: UIImage.make(withColor: .red).pngData()!)
-//        
-//        XCTAssertNil(view?.renderedImage)
-//    }
+    func test_loadFeedCompletion_dispatchesFromBackgroundToMainThread() {
+        let (sut, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        let exp = expectation(description: "Wait for complete from background queue")
+        DispatchQueue.global().async {
+            loader.completeFeedLoading(at: 0)
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+        
+    }
     
+//    func test_feedImageView_doesNotRenderLoadedImageWhenNotVisibleAnymore() {
+//          let (sut, loader) = makeSUT()
+//          sut.simulateAppearance()
+//  
+//          let view = sut.simulateFeedImageViewNotVisible(at: 0)
+//          loader.completeImageLoading(with: UIImage.make(withColor: .red).pngData()!)
+//  
+//          XCTAssertNil(view?.renderedImage)
+//      }
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: FeedViewController, loader: LoaderSpy) {
