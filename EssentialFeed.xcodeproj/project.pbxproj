@@ -42,7 +42,7 @@
 		286420A42AE80FB700B8CDB5 /* Feed.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 286420A32AE80FB700B8CDB5 /* Feed.xcassets */; };
 		286420A62AE8299F00B8CDB5 /* UITableView+Dequeueing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286420A52AE8299F00B8CDB5 /* UITableView+Dequeueing.swift */; };
 		286420A82AE82B7B00B8CDB5 /* UIImageView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286420A72AE82B7B00B8CDB5 /* UIImageView+Animations.swift */; };
-		286420AE2AE8372B00B8CDB5 /* Feed.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 286420AD2AE8372B00B8CDB5 /* Feed.xcstrings */; };
+		286420B42AE8445D00B8CDB5 /* Feed.strings in Resources */ = {isa = PBXBuildFile; fileRef = 286420B62AE8445D00B8CDB5 /* Feed.strings */; };
 		286535ED2ACDDB8F00572831 /* EssentialFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 286535E42ACDDB8F00572831 /* EssentialFeed.framework */; };
 		286535F32ACDDB8F00572831 /* EssentialFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = 286535E72ACDDB8F00572831 /* EssentialFeed.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		286535FD2ACDDBDE00572831 /* FeedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286535FC2ACDDBDE00572831 /* FeedImage.swift */; };
@@ -166,7 +166,8 @@
 		286420A32AE80FB700B8CDB5 /* Feed.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Feed.xcassets; sourceTree = "<group>"; };
 		286420A52AE8299F00B8CDB5 /* UITableView+Dequeueing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeueing.swift"; sourceTree = "<group>"; };
 		286420A72AE82B7B00B8CDB5 /* UIImageView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Animations.swift"; sourceTree = "<group>"; };
-		286420AD2AE8372B00B8CDB5 /* Feed.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Feed.xcstrings; sourceTree = "<group>"; };
+		286420B12AE8439F00B8CDB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		286420B52AE8445D00B8CDB5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Feed.strings; sourceTree = "<group>"; };
 		286535E42ACDDB8F00572831 /* EssentialFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		286535E72ACDDB8F00572831 /* EssentialFeed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EssentialFeed.h; sourceTree = "<group>"; };
 		286535EC2ACDDB8F00572831 /* EssentialFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -367,7 +368,7 @@
 				2864209B2AE8014600B8CDB5 /* FeedImagePresenter.swift */,
 				2864209D2AE807F800B8CDB5 /* FeedLoadingViewModel.swift */,
 				2864209F2AE8081800B8CDB5 /* FeedViewModel.swift */,
-				286420AD2AE8372B00B8CDB5 /* Feed.xcstrings */,
+				286420B62AE8445D00B8CDB5 /* Feed.strings */,
 			);
 			path = "Feed Presentation";
 			sourceTree = "<group>";
@@ -493,6 +494,7 @@
 		28B24ED02AE18EFE00B4A8AC /* EssentialFeediOS */ = {
 			isa = PBXGroup;
 			children = (
+				286420B12AE8439F00B8CDB5 /* Info.plist */,
 				2864207A2AE6B2E400B8CDB5 /* FeedImageDataLoader.swift */,
 				286420792AE6B2B800B8CDB5 /* FeedUI */,
 			);
@@ -665,6 +667,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					English,
+				);
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
@@ -747,9 +752,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				286420AE2AE8372B00B8CDB5 /* Feed.xcstrings in Resources */,
 				286420A22AE80F1200B8CDB5 /* Feed.storyboard in Resources */,
 				286420A42AE80FB700B8CDB5 /* Feed.xcassets in Resources */,
+				286420B42AE8445D00B8CDB5 /* Feed.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -897,6 +902,17 @@
 			targetProxy = 28B24EED2AE1BA1F00B4A8AC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		286420B62AE8445D00B8CDB5 /* Feed.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				286420B52AE8445D00B8CDB5 /* en */,
+			);
+			name = Feed.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		282CE64D2AD47B88007CE17B /* Debug */ = {
@@ -1221,6 +1237,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EssentialFeediOS/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -1260,6 +1277,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EssentialFeediOS/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
