@@ -22,6 +22,9 @@ struct FeedErrorViewModel {
     static var noError: FeedErrorViewModel {
         return FeedErrorViewModel(errorMessage: nil)
     }
+    static func error(message: String) -> FeedErrorViewModel {
+        return FeedErrorViewModel(errorMessage: message)
+    }
 }
 protocol FeedView {
     func display(_ viewModel: FeedViewModel)
@@ -47,12 +50,17 @@ final class FeedPresenter {
     }
     
     func didStartLoadingFeed() {
-        errorView.display(nil)
+        errorView.display(.noError)
         loadingView.display(FeedLoadingViewModel(isLoading: true))
     }
     
     func didFinishLoadingFeed(with feed: [FeedImage]) {
         feedView.display(FeedViewModel(feed: feed))
+        loadingView.display(FeedLoadingViewModel(isLoading: false))
+    }
+    
+    func didFinishLoadingFeed(with error: Error) {
+        errorView.display(FeedErrorViewModel(errorMessage: error.localizedDescription))
         loadingView.display(FeedLoadingViewModel(isLoading: false))
     }
 }
@@ -77,6 +85,14 @@ final class FeedPresenterTests: XCTestCase {
         sut.didFinishLoadingFeed(with: feed)
         
         XCTAssertEqual(view.messages, [.display(feed: feed), .display(isLoading: false)])
+    }
+    
+    func test_didFinishLoadingFeed_withErrorAndStopsLoading() {
+        let (sut , view) = makeSUT()
+        let error = anyNSError()
+        sut.didFinishLoadingFeed(with: error)
+        
+        XCTAssertEqual(view.messages, [.display(errorMessage: error.localizedDescription), .display(isLoading: false)])
     }
     
     // MARK: Helpers
