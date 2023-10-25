@@ -16,19 +16,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="DPi-WF-ltg">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="16"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="DPi-WF-ltg" customClass="ErrorView" customModule="EssentialFeediOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wsB-Cp-KTX">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <inset key="contentEdgeInsets" minX="0.0" minY="8" maxX="0.0" maxY="8"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Error Label">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="hideMessage" destination="DPi-WF-ltg" eventType="touchUpInside" id="DZa-o2-DKv"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.99951404330000004" green="0.41759261489999999" blue="0.4154433012" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="wsB-Cp-KTX" secondAttribute="trailing" id="ciW-tH-xap"/>
+                                <constraint firstAttribute="bottom" secondItem="wsB-Cp-KTX" secondAttribute="bottom" id="jSD-hO-Wj7"/>
+                                <constraint firstItem="wsB-Cp-KTX" firstAttribute="top" secondItem="DPi-WF-ltg" secondAttribute="top" id="qK8-MP-dRB"/>
+                                <constraint firstItem="wsB-Cp-KTX" firstAttribute="leading" secondItem="DPi-WF-ltg" secondAttribute="leading" id="x6w-9K-5LI"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="button" destination="wsB-Cp-KTX" id="aEn-L6-4rJ"/>
+                            </connections>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="F1O-wB-Frr">
-                            <rect key="frame" x="0.0" y="599" width="393" height="16"/>
+                            <rect key="frame" x="0.0" y="617" width="393" height="16"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedImageCell" rowHeight="505" id="xoD-7v-j0U" customClass="FeedImageCell" customModule="EssentialFeediOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="66" width="393" height="505"/>
+                                <rect key="frame" x="0.0" y="84" width="393" height="505"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xoD-7v-j0U" id="8ax-im-xch">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="505"/>
@@ -150,10 +173,13 @@
                             <action selector="refresh" destination="87O-8x-gv6" eventType="valueChanged" id="WfX-Ws-5ai"/>
                         </connections>
                     </refreshControl>
+                    <connections>
+                        <outlet property="errorView" destination="DPi-WF-ltg" id="Ts6-va-QYK"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xwv-8m-UWt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="146" y="-75"/>
+            <point key="canvasLocation" x="145.80152671755724" y="-75.352112676056336"/>
         </scene>
     </scenes>
     <resources>

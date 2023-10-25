@@ -11,41 +11,61 @@ protocol FeedViewControllerDelegate {
     func didRequestFeedRefresh()
 }
 
-final public class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching, FeedLoadingView {
-    
+final public class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching, FeedLoadingView, FeedErrorView {
+    @IBOutlet private(set) public var errorView: ErrorView?
     var delegate: FeedViewControllerDelegate?
+
     private var onViewIsAppearing: (() -> Void)?
-    
-    var tableModel = [FeedImageCellController]() {
-        didSet {
-            tableView.reloadData()
-        }
+
+    private var tableModel = [FeedImageCellController]() {
+        didSet { tableView.reloadData() }
     }
-    
+
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         onViewIsAppearing = { [weak self] in
             self?.refresh()
             self?.onViewIsAppearing = nil
         }
     }
-    
+
     public override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
 
         onViewIsAppearing?()
     }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        refreshControl?.beginRefreshing()
-    }
-    
+
     @IBAction private func refresh() {
         delegate?.didRequestFeedRefresh()
     }
-    
+
+    func display(_ viewModel: FeedLoadingViewModel) {
+        if viewModel.isLoading {
+            refreshControl?.beginRefreshing()
+        } else {
+            refreshControl?.endRefreshing()
+        }
+    }
+
+    func display(_ viewModel: FeedErrorViewModel?) {
+        if let errorMessage = viewModel?.errorMessage {
+            errorView?.show(message: errorMessage)
+        } else {
+            errorView?.hideMessage()
+        }
+    }
+
+    func display(_ cellControllers: [FeedImageCellController]) {
+        tableModel = cellControllers
+    }
+
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        tableView.sizeTableHeaderToFit()
+    }
+
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableModel.count
     }
@@ -75,20 +95,7 @@ final public class FeedViewController: UITableViewController, UITableViewDataSou
     private func cancelCellControllerLoad(forRowAt indexPath: IndexPath) {
         cellController(forRowAt: indexPath).cancelLoad()
     }
-    
-    func display(_ viewModel: FeedLoadingViewModel) {
-        viewModel.isLoading ? refreshControl?.beginRefreshing() : refreshControl?.endRefreshing()
-    }
-    
-    func display(_ cellControllers: [FeedImageCellController]) {
-        tableModel = cellControllers
-    }
-    
-    public override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
 
-        tableView.sizeTableHeaderToFit()
-    }
 }
 
 extension UITableView {
