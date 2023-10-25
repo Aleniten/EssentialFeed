@@ -484,10 +484,10 @@
 		286535E62ACDDB8F00572831 /* EssentialFeed */ = {
 			isa = PBXGroup;
 			children = (
+				286535E72ACDDB8F00572831 /* EssentialFeed.h */,
 				284B6E642ADF121E0039F14F /* Infrastructure */,
 				286A0EFA2AD8915C0027CD03 /* Feed Cache */,
 				286536032ACEDE1C00572831 /* Feed API */,
-				286535E72ACDDB8F00572831 /* EssentialFeed.h */,
 				286536002ACDDEFF00572831 /* Feed Feature */,
 			);
 			path = EssentialFeed;
@@ -499,6 +499,7 @@
 				287C3C802AD4411E0094AC2F /* Helpers */,
 				286A0EF72AD82EF30027CD03 /* Feed Cache */,
 				280BB7CF2AD03C170025B0DC /* Feed API */,
+				288B78C12AE99D0C00F1BB98 /* Feed Presentation */,
 			);
 			path = EssentialFeedTests;
 			sourceTree = "<group>";
@@ -566,6 +567,13 @@
 				28F4F84F2AD9924C000CD17F /* SharedTestHelpers.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		288B78C12AE99D0C00F1BB98 /* Feed Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Feed Presentation";
 			sourceTree = "<group>";
 		};
 		28B24ED02AE18EFE00B4A8AC /* EssentialFeediOS */ = {
