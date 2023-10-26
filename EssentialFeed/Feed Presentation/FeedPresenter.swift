@@ -7,52 +7,6 @@
 
 import Foundation
 
-final class Localized {
-    static var bundle: Bundle {
-        Bundle(for: Localized.self)
-    }
-}
-
-extension Localized {
-    enum Feed {
-        static var table: String { "Feed" }
-
-        static var title: String {
-            NSLocalizedString(
-                "FEED_VIEW_TITLE",
-                tableName: table,
-                bundle: bundle,
-                comment: "Title for the feed view")
-        }
-        
-        static var loadError: String {
-            NSLocalizedString(
-                "FEED_VIEW_CONNECTION_ERROR",
-                tableName: table,
-                bundle: bundle,
-                comment: "Error message displayed when we can't load the image feed from the server")
-        }
-    }
-}
-
-public struct FeedViewModel {
-    public let feed: [FeedImage]
-}
-
-public struct FeedLoadingViewModel {
-    public let isLoading: Bool
-}
-
-public struct FeedErrorViewModel {
-    public var errorMessage: String?
-    
-    static var noError: FeedErrorViewModel {
-        return FeedErrorViewModel(errorMessage: nil)
-    }
-    static func error(message: String) -> FeedErrorViewModel {
-        return FeedErrorViewModel(errorMessage: message)
-    }
-}
 public protocol FeedView {
     func display(_ viewModel: FeedViewModel)
 }
