@@ -7,17 +7,17 @@
 
 import Foundation
 
-final class Localized {
+public final class Localized {
     static var bundle: Bundle {
         Bundle(for: Localized.self)
     }
 }
 
 extension Localized {
-    enum Feed {
+    public enum Feed {
         static var table: String { "Feed" }
 
-        static var title: String {
+        public static var title: String {
             NSLocalizedString(
                 "FEED_VIEW_TITLE",
                 tableName: table,
