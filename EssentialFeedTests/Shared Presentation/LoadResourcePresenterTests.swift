@@ -22,12 +22,17 @@ final class LoadResourcePresenterTests: XCTestCase {
         XCTAssertEqual(view.messages, [.display(errorMessage: .none), .display(isLoading: true)])
     }
     
-    func test_didFinishLoadingFeed_displaysFeedAndStopsLoading() {
-        let (sut , view) = makeSUT()
-        let feed = uniqueImageFeed().models
-        sut.didFinishLoadingFeed(with: feed)
+    func test_didFinishLoadingResource_displaysResourceAndStopsLoading() {
+        let (sut , view) = makeSUT(mapper: { resource in
+            resource + " view model"
+        })
+
+        sut.didFinishLoading(with: "resource")
         
-        XCTAssertEqual(view.messages, [.display(feed: feed), .display(isLoading: false)])
+        XCTAssertEqual(view.messages, [
+            .display(resourceViewModel: "resource view model"),
+            .display(isLoading: false)
+        ])
     }
     
     func test_didFinishLoadingFeed_withErrorAndStopsLoading() {
@@ -39,9 +44,13 @@ final class LoadResourcePresenterTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: LoadResourcePresenter, view: ViewSpy) {
+    private func makeSUT(
+        mapper: @escaping LoadResourcePresenter.Mapper = {_ in "any "},
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> (sut: LoadResourcePresenter, view: ViewSpy) {
         let view = ViewSpy()
-        let sut = LoadResourcePresenter(feedView: view, loadingView: view, errorView: view)
+        let sut = LoadResourcePresenter(resourceView: view, loadingView: view, errorView: view, mapper: mapper)
         trackForMemoryLeaks(view, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, view)
@@ -57,12 +66,12 @@ final class LoadResourcePresenterTests: XCTestCase {
         return value
     }
     
-    private class ViewSpy: FeedErrorView, FeedLoadingView, FeedView {
+    private class ViewSpy: FeedErrorView, FeedLoadingView, ResourceView {
         
         enum Message: Hashable {
             case display(errorMessage: String?)
             case display(isLoading: Bool)
-            case display(feed: [FeedImage])
+            case display(resourceViewModel: String)
         }
         var messages = Set<Message>()
         
@@ -74,8 +83,8 @@ final class LoadResourcePresenterTests: XCTestCase {
             messages.insert(.display(isLoading: viewModel.isLoading))
         }
         
-        func display(_ viewModel: FeedViewModel) {
-            messages.insert(.display(feed: viewModel.feed))
+        func display(_ viewModel: String) {
+            messages.insert(.display(resourceViewModel: viewModel))
         }
     }
 
