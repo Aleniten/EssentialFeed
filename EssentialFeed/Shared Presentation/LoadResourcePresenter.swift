@@ -19,8 +19,8 @@ public final class LoadResourcePresenter<Resource, View: ResourceView> {
     private let errorView: FeedErrorView
     private let mapper: Mapper
     
-    private var feedLoadError: String {
-        Localized.Feed.loadError
+    public static var loadError: String {
+        Localized.Shared.loadError
     }
     
     public init(resourceView: View, loadingView: FeedLoadingView, errorView: FeedErrorView, mapper: @escaping Mapper) {
@@ -41,7 +41,7 @@ public final class LoadResourcePresenter<Resource, View: ResourceView> {
     }
     
     public func didFinishLoading(with error: Error) {
-        errorView.display(FeedErrorViewModel(errorMessage: feedLoadError))
+        errorView.display(FeedErrorViewModel(errorMessage: Self.loadError))
         loadingView.display(FeedLoadingViewModel(isLoading: false))
     }
 }

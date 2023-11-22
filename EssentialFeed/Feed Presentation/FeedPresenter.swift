@@ -29,7 +29,7 @@ public final class FeedPresenter {
     }
     
     private var feedLoadError: String {
-        Localized.Feed.loadError
+        Localized.Shared.loadError
     }
     
    public init(feedView: FeedView, loadingView: FeedLoadingView, errorView: FeedErrorView) {
