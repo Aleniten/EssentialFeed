@@ -37,4 +37,16 @@ extension Localized {
                 comment: "Error message displayed when we can't load the resource from the server")
         }
     }
+    
+    public enum ImageComments {
+        static var table: String { "ImageComments" }
+        
+        static var title: String {
+            NSLocalizedString(
+                "IMAGE_COMMENTS_VIEW_TITLE",
+                tableName: table,
+                bundle: bundle,
+                comment: "Title for the ImageComments view")
+        }
+    }
 }
